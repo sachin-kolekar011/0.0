@@ -10,8 +10,15 @@
     <div class="container">
         <h1>Find a Flatmate</h1>
 
-        <!-- Flatmate Request Form -->
-        <div class="flatmate-form">
+        <!-- User Action Selection -->
+        <div class="action-selection">
+            <h2>What would you like to do?</h2>
+            <button id="postRequestBtn">Post a Flatmate Request</button>
+            <button id="searchFlatmatesBtn">Search for Flatmates</button>
+        </div>
+
+        <!-- Flatmate Request Form (Initially hidden) -->
+        <div class="flatmate-form" id="flatmateForm" style="display:none;">
             <h2>Create a Flatmate Request</h2>
             <form id="flatmateRequestForm">
                 <input type="text" id="name" placeholder="Your Name" required />
@@ -33,9 +40,14 @@
             </form>
         </div>
 
-        <!-- Flatmate Search Section -->
-        <div class="search-section">
+        <!-- Flatmate Search Section (Initially hidden) -->
+        <div class="search-section" id="searchSection" style="display:none;">
             <h2>Find Flatmates</h2>
+            <input type="text" id="searchBar" placeholder="Search by college, location, flat type..." oninput="filterFlatmates()" />
+            <select id="sortRent" onchange="sortFlatmates()">
+                <option value="asc">Sort by Rent (Low to High)</option>
+                <option value="desc">Sort by Rent (High to Low)</option>
+            </select>
             <div class="flatmates-container">
                 <div id="flatmatesList" class="flatmates-list-container"></div>
             </div>

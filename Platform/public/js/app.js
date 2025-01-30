@@ -88,5 +88,71 @@ function sendRequest(id) {
     alert(`Request sent to ${request.name} for flatmate!`);
 }
 
-// Fetch the initial list of flatmate requests on page load
-fetchFlatmates();
+// Filter flatmates based on the search bar input
+function filterFlatmates() {
+    const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+    const filteredRequests = flatmateRequests.filter(request => {
+        return (
+            request.college.toLowerCase().includes(searchTerm) ||
+            request.location.toLowerCase().includes(searchTerm) ||
+            request.flatType.toLowerCase().includes(searchTerm)
+        );
+    });
+    displayFilteredFlatmates(filteredRequests);
+}
+
+// Display filtered flatmates
+function displayFilteredFlatmates(filteredRequests) {
+    const flatmatesList = document.getElementById('flatmatesList');
+    flatmatesList.innerHTML = '';
+
+    filteredRequests.forEach(request => {
+        const flatmateCard = document.createElement('div');
+        flatmateCard.classList.add('flatmate-card');
+        
+        flatmateCard.innerHTML = `
+            <div>
+                <strong>${request.name}</strong><br>
+                Phone: ${request.phone}<br>
+                College: ${request.college}<br>
+                Location: ${request.location}<br>
+                Owner: ${request.ownerName}<br>
+                Owner Phone: ${request.ownerPhone}<br>
+                Facilities: ${request.facilities}<br>
+                Flat Type: ${request.flatType}<br>
+                Rent: ${request.rent}
+            </div>
+            <button class="request-btn" onclick="sendRequest(${request.id})">Request Flatmate</button>
+        `;
+        flatmatesList.appendChild(flatmateCard);
+    });
+}
+
+// Sort flatmates by rent
+function sortFlatmates() {
+    const sortOrder = document.getElementById('sortRent').value;
+    const sortedRequests = [...flatmateRequests];
+
+    sortedRequests.sort((a, b) => {
+        if (sortOrder === 'asc') {
+            return a.rent - b.rent;
+        } else {
+            return b.rent - a.rent;
+        }
+    });
+
+    displayFilteredFlatmates(sortedRequests);
+}
+
+// Show the flatmate request form
+document.getElementById('postRequestBtn').addEventListener('click', function() {
+    document.getElementById('flatmateForm').style.display = 'block';
+    document.getElementById('searchSection').style.display = 'none';
+});
+
+// Show the flatmate search section
+document.getElementById('searchFlatmatesBtn').addEventListener('click', function() {
+    document.getElementById('flatmateForm').style.display = 'none';
+    document.getElementById('searchSection').style.display = 'block';
+    fetchFlatmates();
+});
