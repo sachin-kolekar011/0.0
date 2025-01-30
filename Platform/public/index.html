@@ -4,39 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Flatmate</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Adjust path if necessary -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Find a Flatmate</h1>
-
-        <!-- User Action Selection -->
-        <div class="action-selection">
-            <h2>What would you like to do?</h2>
-            <button id="postRequestBtn">Post a Flatmate Request</button>
-            <button id="searchFlatmatesBtn">Search for Flatmates</button>
+    
+    <header>
+        <div class="header-container">
+            <h1>Find a Flatmate</h1>
+            <p class="subheading">Find the perfect flatmate for your place, or find a place with the right flatmates!</p>
+            <div class="hero-actions">
+                <button id="postRequestBtn" class="btn btn-outline-primary">Post a Request</button>
+                <button id="searchFlatmatesBtn" class="btn btn-outline-primary">Search for Flatmates</button>
+            </div>
         </div>
+    </header>
 
+    <div id="introImageContainer" class="intro-image-container">
+        <img src="flat.webp" alt="Intro Image" id="introImage" />
+    </div>
+
+    <div class="container">
         <!-- Flatmate Request Form (Initially hidden) -->
         <div class="flatmate-form" id="flatmateForm" style="display:none;">
             <h2>Create a Flatmate Request</h2>
             <form id="flatmateRequestForm">
-                <input type="text" id="name" placeholder="Your Name" required />
-                <input type="text" id="phone" placeholder="Phone Number" required />
-                <input type="text" id="college" placeholder="College Name" required />
-                <input type="text" id="location" placeholder="Flat Location" required />
-                <input type="text" id="ownerName" placeholder="Owner Name" required />
-                <input type="text" id="ownerPhone" placeholder="Owner Phone" required />
-                <textarea id="facilities" placeholder="Facilities" required></textarea>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required />
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required />
+
+                <label for="college">College Name:</label>
+                <input type="text" id="college" placeholder="Enter your college name" required />
+
+                <label for="location">Flat Location:</label>
+                <input type="text" id="location" placeholder="Enter the flat's location" required />
+
+                <label for="ownerName">Owner Name:</label>
+                <input type="text" id="ownerName" placeholder="Enter the owner's name" required />
+
+                <label for="ownerPhone">Owner Phone:</label>
+                <input type="text" id="ownerPhone" placeholder="Enter the owner's phone number" required />
+
+                <label for="facilities">Facilities:</label>
+                <textarea id="facilities" placeholder="Describe the facilities" required></textarea>
+
+                <label for="flatType">Type of Flat:</label>
                 <select id="flatType" required>
-                    <option value="">Type of Flat</option>
+                    <option value="">Select flat type</option>
                     <option value="1BHK">1 BHK</option>
                     <option value="2BHK">2 BHK</option>
                     <option value="3BHK">3 BHK</option>
                     <option value="Studio">Studio</option>
                 </select>
-                <input type="text" id="rent" placeholder="Rent" required />
-                <button type="submit">Submit Request</button>
+
+                <label for="rent">Rent:</label>
+                <input type="text" id="rent" placeholder="Enter the rent amount" required />
+                
+                <button type="submit" class="btn btn-success">Submit Request</button>
             </form>
         </div>
 
@@ -49,10 +75,16 @@
                 <option value="desc">Sort by Rent (High to Low)</option>
             </select>
             <div class="flatmates-container">
-                <div id="flatmatesList" class="flatmates-list-container"></div>
+                <div id="flatmatesList" class="flatmates-list-container">
+                    
+                </div>
             </div>
         </div>
     </div>
+
+    <footer>
+        <p>© 2025 Find a Flatmate. All rights reserved.</p>
+    </footer>
 
     <script src="js/app.js"></script>
 </body>

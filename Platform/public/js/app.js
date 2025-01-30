@@ -15,6 +15,7 @@ function fetchFlatmates() {
 document.getElementById('flatmateRequestForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    // Get form values
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const college = document.getElementById('college').value;
@@ -24,6 +25,11 @@ document.getElementById('flatmateRequestForm').addEventListener('submit', functi
     const facilities = document.getElementById('facilities').value;
     const flatType = document.getElementById('flatType').value;
     const rent = document.getElementById('rent').value;
+
+    // Input validation
+    if (!validateForm(name, phone, college, location, ownerName, ownerPhone, facilities, flatType, rent)) {
+        return; // Stop form submission if validation fails
+    }
 
     const newRequest = {
         name,
@@ -64,7 +70,7 @@ function displayFlatmates() {
         flatmateCard.classList.add('flatmate-card');
         
         flatmateCard.innerHTML = `
-            <div>
+            <div class="flat-list-div">
                 <strong>${request.name}</strong><br>
                 Phone: ${request.phone}<br>
                 College: ${request.college}<br>
@@ -75,7 +81,7 @@ function displayFlatmates() {
                 Flat Type: ${request.flatType}<br>
                 Rent: ${request.rent}
             </div>
-            <button class="request-btn" onclick="sendRequest(${request.id})">Request Flatmate</button>
+            <button class="btn btn-outline-success" onclick="sendRequest(${request.id})">Request Flatmate</button>
         `;
 
         flatmatesList.appendChild(flatmateCard);
@@ -109,9 +115,9 @@ function displayFilteredFlatmates(filteredRequests) {
     filteredRequests.forEach(request => {
         const flatmateCard = document.createElement('div');
         flatmateCard.classList.add('flatmate-card');
-        
+       
         flatmateCard.innerHTML = `
-            <div>
+            <div class='flat-list-div'>
                 <strong>${request.name}</strong><br>
                 Phone: ${request.phone}<br>
                 College: ${request.college}<br>
@@ -125,7 +131,9 @@ function displayFilteredFlatmates(filteredRequests) {
             <button class="request-btn" onclick="sendRequest(${request.id})">Request Flatmate</button>
         `;
         flatmatesList.appendChild(flatmateCard);
+        
     });
+    
 }
 
 // Sort flatmates by rent
@@ -146,13 +154,57 @@ function sortFlatmates() {
 
 // Show the flatmate request form
 document.getElementById('postRequestBtn').addEventListener('click', function() {
+    document.getElementById('introImageContainer').style.display = 'none';
     document.getElementById('flatmateForm').style.display = 'block';
     document.getElementById('searchSection').style.display = 'none';
 });
 
 // Show the flatmate search section
 document.getElementById('searchFlatmatesBtn').addEventListener('click', function() {
+    document.getElementById('introImageContainer').style.display = 'none';
     document.getElementById('flatmateForm').style.display = 'none';
     document.getElementById('searchSection').style.display = 'block';
     fetchFlatmates();
 });
+
+// Input Validation Function
+function validateForm(name, phone, college, location, ownerName, ownerPhone, facilities, flatType, rent) {
+    if (!name || !/^[A-Za-z\s]+$/.test(name)) {
+        alert('Please enter a valid name (only letters and spaces).');
+        return false;
+    }
+    if (!phone || !/^\d{10}$/.test(phone)) {
+        alert('Please enter a valid phone number (10 digits).');
+        return false;
+    }
+    if (!college) {
+        alert('Please enter the college name.');
+        return false;
+    }
+    if (!location) {
+        alert('Please enter the flat location.');
+        return false;
+    }
+    if (!ownerName) {
+        alert('Please enter the owner\'s name.');
+        return false;
+    }
+    if (!ownerPhone || !/^\d{10}$/.test(ownerPhone)) {
+        alert('Please enter a valid owner phone number (10 digits).');
+        return false;
+    }
+    if (!facilities) {
+        alert('Please enter the facilities.');
+        return false;
+    }
+    if (!flatType) {
+        alert('Please select the flat type.');
+        return false;
+    }
+    if (!rent || isNaN(rent) || rent <= 0) {
+        alert('Please enter a valid rent amount.');
+        return false;
+    }
+
+    return true;
+}
