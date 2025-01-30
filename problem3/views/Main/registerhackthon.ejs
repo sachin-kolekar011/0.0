@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .member-section {
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .member-section hr {
+            border: none;
+            height: 1px;
+            background-color: #ccc;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Hackathon Registration Form</h2>
+        <form action="/register" method="POST">
+
+            <label for="team">Team Name:</label>
+            <input type="text" id="team" name="team" required>
+
+            <label for="name">Leader Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Leader Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Leader Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="team-members">Team Members:</label>
+            <select id="team-members" name="team-members" required onchange="generateMemberFields()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+            <div id="team-members-container"></div>
+
+            <label for="project">Project Idea:</label>
+            <textarea id="project" name="project" rows="3" required></textarea>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function generateMemberFields() {
+            const teamSize = parseInt(document.getElementById("team-members").value);
+            const container = document.getElementById("team-members-container");
+            container.innerHTML = ""; // Clear previous inputs
+
+            for (let i = 2; i <= teamSize; i++) {
+                const memberDiv = document.createElement("div");
+                memberDiv.classList.add("member-section");
+
+                memberDiv.innerHTML = `
+                    <label for="member${i}-name">Member ${i} Name:</label>
+                    <input type="text" id="member${i}-name" name="member${i}-name" placeholder="Name" required>
+                    
+                    <label for="member${i}-email">Member ${i} Email:</label>
+                    <input type="email" id="member${i}-email" name="member${i}-email" placeholder="Email" required>
+                    
+                    <label for="member${i}-phone">Member ${i} Phone Number:</label>
+                    <input type="tel" id="member${i}-phone" name="member${i}-phone" placeholder="Phone Number" required>
+                    
+                    <hr>
+                `;
+                container.appendChild(memberDiv);
+            }
+        }
+    </script>
+</body>
+
+</html>

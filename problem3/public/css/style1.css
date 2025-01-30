@@ -1,0 +1,114 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Overall container styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+   
+    align-items: center;
+    justify-content: center;
+  
+}
+
+/* Heading style */
+h1 {
+    text-align: center;
+    margin: 30px;
+    color: black;
+}
+.A{
+    margin-left: 20%;
+    margin-right: 20%;
+
+
+}
+
+/* Button style */
+.B {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 12px 20px;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+
+/* List styling for hackathons */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Hackathon title */
+h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* General paragraph styling */
+p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+strong {
+    color: #555;
+}
+
+/* Formatting for the prize pool */
+p strong + span {
+    font-weight: bold;
+    color: #e91e63;
+}
+
+/* Horizontal divider styling */
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    li {
+        padding: 15px;
+    }
+
+    a {
+        font-size: 14px;
+    }
+}

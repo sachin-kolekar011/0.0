@@ -1,0 +1,162 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #ebf8f6;
+    padding: 10px 20px;
+    color: black;
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+    position: sticky;
+    top: 0; 
+    z-index: 1000; 
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #e9c46a;
+}
+
+.navbar0 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+}
+
+.navbar1 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.search button {
+    background-color: #e76f51;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search button:hover {
+    background-color: #f4a261;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #63757d;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #2a9d8f;
+    
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar2 {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar2 a {
+    padding: 5px 15px;
+    border: 1px solid rgb(69, 62, 62);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar2 a:hover {
+    background-color: white;
+    color: #2a9d8f;
+}
+
+/* Toggle button styles */
+.toggle-btn {
+display: none;
+cursor: pointer;
+font-size: 1.5rem;
+background: none;
+border: none;
+color: black;
+margin-left: auto;
+}
+
+.toggle-btn:hover {
+color: #e9c46a;
+}
+
+/* Show toggle button on smaller screens */
+@media (max-width: 768px) {
+.toggle-btn {
+display: block;
+}
+
+.navbar1,
+.navbar2 {
+display: none;
+flex-direction: column;
+gap: 10px;
+align-items: flex-start;
+width: 100%;
+}
+
+.navbar.show .navbar1,
+.navbar.show .navbar2 {
+display: flex;
+}
+}

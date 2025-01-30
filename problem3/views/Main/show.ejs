@@ -1,0 +1,26 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= listing.title %> - Details</title>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= listing.title %></h1>
+        <p><strong>Description:</strong> <%= listing.description %></p>
+        <p><strong>Start Date:</strong> <%= new Date(listing.startDate).toDateString() %></p>
+        <p><strong>End Date:</strong> <%= new Date(listing.endDate).toDateString() %></p>
+        <p><strong>Location:</strong> <%= listing.location %></p>
+        <p><strong>Prize Pool:</strong> $<%= listing.prizePool %></p>
+        <p><strong>Categories:</strong> <%= listing.categories.join(", ") %></p>
+        <p><strong>Rules:</strong> <%= listing.rules.join(", ") %></p>
+        <p><strong>Max Team Size:</strong> <%= listing.maxTeamSize %></p>
+
+        <a href="/hackthon" class="btn">Back to Hackathons</a>
+    </div>
+</body>
+</html>

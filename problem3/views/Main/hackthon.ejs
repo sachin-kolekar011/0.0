@@ -1,0 +1,41 @@
+<% layout("layout/boilerplate") %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon List</title>
+    <link rel="stylesheet" href="/css/style1.css">
+</head>
+<body>
+    <h1>All Hackathons</h1>
+    <a class="B" href="/hackthon/createhackthon" style="background-color: lightblue; margin-left: 20%;">Create Hackathon</a>
+
+    <% if (Hackathondata.length > 0) { %>
+        <ul>
+            <% Hackathondata.forEach(hackathon => { %>
+                
+                <div class="A">
+                    <a  href="/hackthon/<%=hackathon._id%>" style="text-decoration: none;color: black;" >
+                    
+                <li>
+                    <p><b>Hackthon Name:</b><%= hackathon.title %></p>
+                    <p><b>Start Regitration:</b> <%= new Date(hackathon.startDate).toDateString() %></p>
+                    <p><b>End Registration:</b> <%= new Date(hackathon.endDate).toDateString() %></p>
+                    <p><b>Prize Pool:</b> <%= hackathon.prizePool %></p>
+                    <form action="/hackthon/<%=hackathon._id%>/register">
+                        <button>Register</button>
+                    </form>
+                </li>
+                
+            </a>
+            </div>
+           
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No hackathons available.</p>
+    <% } %>
+</body>
+</html>
