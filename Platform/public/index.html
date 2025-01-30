@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Flatmate</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+    <div class="container">
+        <h1>Find a Flatmate</h1>
+
+        <!-- Flatmate Request Form -->
+        <div class="flatmate-form">
+            <h2>Create a Flatmate Request</h2>
+            <form id="flatmateRequestForm">
+                <input type="text" id="name" placeholder="Your Name" required />
+                <input type="text" id="phone" placeholder="Phone Number" required />
+                <input type="text" id="college" placeholder="College Name" required />
+                <input type="text" id="location" placeholder="Flat Location" required />
+                <input type="text" id="ownerName" placeholder="Owner Name" required />
+                <input type="text" id="ownerPhone" placeholder="Owner Phone" required />
+                <textarea id="facilities" placeholder="Facilities" required></textarea>
+                <select id="flatType" required>
+                    <option value="">Type of Flat</option>
+                    <option value="1BHK">1 BHK</option>
+                    <option value="2BHK">2 BHK</option>
+                    <option value="3BHK">3 BHK</option>
+                    <option value="Studio">Studio</option>
+                </select>
+                <input type="text" id="rent" placeholder="Rent" required />
+                <button type="submit">Submit Request</button>
+            </form>
+        </div>
+
+        <!-- Flatmate Search Section -->
+        <div class="search-section">
+            <h2>Find Flatmates</h2>
+            <div class="flatmates-container">
+                <div id="flatmatesList" class="flatmates-list-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
