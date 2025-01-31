@@ -23,3 +23,5 @@ const hackathonRegistrationSchema = new mongoose.Schema({
 const HackathonRegistration = mongoose.model('HackathonRegistration', hackathonRegistrationSchema);
 
 module.exports = HackathonRegistration;
+
+

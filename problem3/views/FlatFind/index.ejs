@@ -1,0 +1,618 @@
+<% layout("layout/boilerplate") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Flatmate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    /* Basic Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.901); /* Set background to transparent */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-image: url(bgimg.avif);
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(to bottom right, #960f60c7, #99039e);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-out;
+    flex-shrink: 0;
+}
+
+.header-container h1 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.subheading {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.hero-actions {
+    margin-top: 30px;
+}
+
+.action-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Container Styles */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 10px;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+/* Flatmate Form */
+.flatmate-form, .search-section {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    animation: slideIn 1s ease-out;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 86, 179, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #003d7a;
+}
+
+.submit-btn {
+    background-color: #28a745;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+/* Search Section */
+.search-section {
+    padding: 20px;
+}
+
+.search-section input, .search-section select {
+    width: 48%;
+    display: inline-block;
+    margin-right: 4%;
+    margin-bottom: 20px;
+}
+
+.search-section input {
+    margin-bottom: 10px;
+}
+
+.search-section select {
+    margin-bottom: 20px;
+}
+
+/* Flatmate List */
+.flatmates-container {
+    width: 100%;
+    padding: 10px;
+    background-color: #f8f9fa;
+    
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.flatmates-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    
+}
+
+.flatmate-card {
+    width: 280px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flatmate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flatmate-card strong {
+    font-size: 1.2rem;
+}
+
+.flatmate-card div {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.request-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.request-btn:hover {
+    background-color: #218838;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: white;
+    margin-top: 40px;
+    flex-shrink: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .action-button {
+        width: 100%;
+    }
+
+    .flatmate-form {
+        padding: 20px;
+    }
+
+    .search-section input, .search-section select {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .flatmate-card {
+        width: 100%;
+        max-width: 350px;
+        margin: 10px 0;
+    }
+}
+
+
+
+.hero-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* Align buttons horizontally */
+    gap: 10px; /* Small gap between buttons */
+}
+
+.action-button {
+    padding: 10px 20px; /* Reduced padding */
+    font-size: 1rem; /* Slightly smaller font size */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px; /* Space out buttons */
+}
+
+.action-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+
+.flat-list-div
+{
+    padding:4%;
+    background-color: #f7f9fc;
+}
+
+#introImage {
+    width: 100%;
+    height:30%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.intro-image-container img {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  </style>
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <h1>Find a Flatmate</h1>
+            <p class="subheading">Find the perfect flatmate for your place, or find a place with the right flatmates!</p>
+            <div class="hero-actions">
+                <button id="postRequestBtn" class="btn btn-outline-primary">Post a Request</button>
+                <button id="searchFlatmatesBtn" class="btn btn-outline-primary">Search for Flatmates</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="introImageContainer" class="intro-image-container">
+        <img src="flat.webp" alt="Intro Image" id="introImage" />
+    </div>
+
+    <div class="container">
+        <!-- Flatmate Request Form (Initially hidden) -->
+        <div class="flatmate-form" id="flatmateForm" style="display:none;">
+            <h2>Create a Flatmate Request</h2>
+            <form id="flatmateRequestForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required />
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required />
+
+                <label for="college">College Name:</label>
+                <input type="text" id="college" placeholder="Enter your college name" required />
+
+                <label for="location">Flat Location:</label>
+                <input type="text" id="location" placeholder="Enter the flat's location" required />
+
+                <label for="ownerName">Owner Name:</label>
+                <input type="text" id="ownerName" placeholder="Enter the owner's name" required />
+
+                <label for="ownerPhone">Owner Phone:</label>
+                <input type="text" id="ownerPhone" placeholder="Enter the owner's phone number" required />
+
+                <label for="facilities">Facilities:</label>
+                <textarea id="facilities" placeholder="Describe the facilities" required></textarea>
+
+                <label for="flatType">Type of Flat:</label>
+                <select id="flatType" required>
+                    <option value="">Select flat type</option>
+                    <option value="1BHK">1 BHK</option>
+                    <option value="2BHK">2 BHK</option>
+                    <option value="3BHK">3 BHK</option>
+                    <option value="Studio">Studio</option>
+                </select>
+
+                <label for="rent">Rent:</label>
+                <input type="text" id="rent" placeholder="Enter the rent amount" required />
+                
+                <button type="submit" class="btn btn-success">Submit Request</button>
+            </form>
+        </div>
+
+        <!-- Flatmate Search Section (Initially hidden) -->
+        <div class="search-section" id="searchSection" style="display:none;">
+            <h2>Find Flatmates</h2>
+            <input type="text" id="searchBar" placeholder="Search by college, location, flat type..." oninput="filterFlatmates()" />
+            <select id="sortRent" onchange="sortFlatmates()">
+                <option value="asc">Sort by Rent (Low to High)</option>
+                <option value="desc">Sort by Rent (High to Low)</option>
+            </select>
+            <div class="flatmates-container">
+                <div id="flatmatesList" class="flatmates-list-container">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Find a Flatmate. All rights reserved.</p>
+    </footer>
+
+    
+</body>
+<script>
+    let flatmateRequests = [];
+
+// Fetch flatmate requests from the server
+function fetchFlatmates() {
+    fetch('/api/flatmates')
+        .then(response => response.json())
+        .then(data => {
+            flatmateRequests = data;
+            displayFlatmates();
+        })
+        .catch(error => console.error('Error fetching flatmate data:', error));
+}
+
+// Handle Flatmate Request Submission (with backend)
+document.getElementById('flatmateRequestForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const college = document.getElementById('college').value;
+    const location = document.getElementById('location').value;
+    const ownerName = document.getElementById('ownerName').value;
+    const ownerPhone = document.getElementById('ownerPhone').value;
+    const facilities = document.getElementById('facilities').value;
+    const flatType = document.getElementById('flatType').value;
+    const rent = document.getElementById('rent').value;
+
+    // Input validation
+    if (!validateForm(name, phone, college, location, ownerName, ownerPhone, facilities, flatType, rent)) {
+        return; // Stop form submission if validation fails
+    }
+
+    const newRequest = {
+        name,
+        phone,
+        college,
+        location,
+        ownerName,
+        ownerPhone,
+        facilities,
+        flatType,
+        rent
+    };
+
+    // Send the new request to the backend
+    fetch('/api/flatmates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newRequest)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Clear form and update flatmate list
+        document.getElementById('flatmateRequestForm').reset();
+        fetchFlatmates();
+    })
+    .catch(error => console.error('Error sending flatmate request:', error));
+});
+
+// Display Flatmate Requests (after fetching from server)
+function displayFlatmates() {
+    const flatmatesList = document.getElementById('flatmatesList');
+    flatmatesList.innerHTML = '';
+
+    flatmateRequests.forEach(request => {
+        const flatmateCard = document.createElement('div');
+        flatmateCard.classList.add('flatmate-card');
+        
+        flatmateCard.innerHTML = `
+            <div class="flat-list-div">
+                <strong>${request.name}</strong><br>
+                Phone: ${request.phone}<br>
+                College: ${request.college}<br>
+                Location: ${request.location}<br>
+                Owner: ${request.ownerName}<br>
+                Owner Phone: ${request.ownerPhone}<br>
+                Facilities: ${request.facilities}<br>
+                Flat Type: ${request.flatType}<br>
+                Rent: ${request.rent}
+            </div>
+            <button class="btn btn-outline-success" onclick="sendRequest(${request.id})">Request Flatmate</button>
+        `;
+
+        flatmatesList.appendChild(flatmateCard);
+    });
+}
+
+// Send Flatmate Request (for simplicity, just a basic alert)
+function sendRequest(id) {
+    const request = flatmateRequests.find(r => r.id === id);
+    alert(`Request sent to ${request.name} for flatmate!`);
+}
+
+// Filter flatmates based on the search bar input
+function filterFlatmates() {
+    const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+    const filteredRequests = flatmateRequests.filter(request => {
+        return (
+            request.college.toLowerCase().includes(searchTerm) ||
+            request.location.toLowerCase().includes(searchTerm) ||
+            request.flatType.toLowerCase().includes(searchTerm)
+        );
+    });
+    displayFilteredFlatmates(filteredRequests);
+}
+
+// Display filtered flatmates
+function displayFilteredFlatmates(filteredRequests) {
+    const flatmatesList = document.getElementById('flatmatesList');
+    flatmatesList.innerHTML = '';
+
+    filteredRequests.forEach(request => {
+        const flatmateCard = document.createElement('div');
+        flatmateCard.classList.add('flatmate-card');
+       
+        flatmateCard.innerHTML = `
+            <div class='flat-list-div'>
+                <strong>${request.name}</strong><br>
+                Phone: ${request.phone}<br>
+                College: ${request.college}<br>
+                Location: ${request.location}<br>
+                Owner: ${request.ownerName}<br>
+                Owner Phone: ${request.ownerPhone}<br>
+                Facilities: ${request.facilities}<br>
+                Flat Type: ${request.flatType}<br>
+                Rent: ${request.rent}
+            </div>
+            <button class="request-btn" onclick="sendRequest(${request.id})">Request Flatmate</button>
+        `;
+        flatmatesList.appendChild(flatmateCard);
+        
+    });
+    
+}
+
+// Sort flatmates by rent
+function sortFlatmates() {
+    const sortOrder = document.getElementById('sortRent').value;
+    const sortedRequests = [...flatmateRequests];
+
+    sortedRequests.sort((a, b) => {
+        if (sortOrder === 'asc') {
+            return a.rent - b.rent;
+        } else {
+            return b.rent - a.rent;
+        }
+    });
+
+    displayFilteredFlatmates(sortedRequests);
+}
+
+// Show the flatmate request form
+document.getElementById('postRequestBtn').addEventListener('click', function() {
+    document.getElementById('introImageContainer').style.display = 'none';
+    document.getElementById('flatmateForm').style.display = 'block';
+    document.getElementById('searchSection').style.display = 'none';
+});
+
+// Show the flatmate search section
+document.getElementById('searchFlatmatesBtn').addEventListener('click', function() {
+    document.getElementById('introImageContainer').style.display = 'none';
+    document.getElementById('flatmateForm').style.display = 'none';
+    document.getElementById('searchSection').style.display = 'block';
+    fetchFlatmates();
+});
+
+// Input Validation Function
+function validateForm(name, phone, college, location, ownerName, ownerPhone, facilities, flatType, rent) {
+    if (!name || !/^[A-Za-z\s]+$/.test(name)) {
+        alert('Please enter a valid name (only letters and spaces).');
+        return false;
+    }
+    if (!phone || !/^\d{10}$/.test(phone)) {
+        alert('Please enter a valid phone number (10 digits).');
+        return false;
+    }
+    if (!college) {
+        alert('Please enter the college name.');
+        return false;
+    }
+    if (!location) {
+        alert('Please enter the flat location.');
+        return false;
+    }
+    if (!ownerName) {
+        alert('Please enter the owner\'s name.');
+        return false;
+    }
+    if (!ownerPhone || !/^\d{10}$/.test(ownerPhone)) {
+        alert('Please enter a valid owner phone number (10 digits).');
+        return false;
+    }
+    if (!facilities) {
+        alert('Please enter the facilities.');
+        return false;
+    }
+    if (!flatType) {
+        alert('Please select the flat type.');
+        return false;
+    }
+    if (!rent || isNaN(rent) || rent <= 0) {
+        alert('Please enter a valid rent amount.');
+        return false;
+    }
+
+    return true;
+}
+</script>
+</html>

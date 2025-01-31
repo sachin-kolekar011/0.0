@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Registration</title>
+</head>
+<body>
+    <h1>Hackathon Teams</h1>
+    <% for(let hackathon of registerhackthondata) { %>
+        <div>
+            <h2>Team: <%= hackathon.teamName %></h2>
+            <p><strong>Leader:</strong> <%= hackathon.leader.name %> (<%= hackathon.leader.email %>, <%= hackathon.leader.phone %>)</p>
+            <p><strong>Project Idea:</strong> <%= hackathon.projectIdea %></p>
+            
+            <h3>Team Members:</h3>
+            <ul>
+                <% hackathon.teamMembers.forEach(member => { %>
+                    <li>
+                        <strong>Name:</strong> <%= member.name %> <br>
+                        <strong>Email:</strong> <%= member.email %> <br>
+                        <strong>Phone:</strong> <%= member.phone %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <hr>
+    <% } %>
+</body>
+</html>

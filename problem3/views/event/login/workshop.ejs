@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminar Event Registration</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://img.freepik.com/free-vector/coding-workshop-concept-illustration_114360-8112.jpg');
+   background-size: cover;
+   background-attachment: fixed;
+   background-position: center;
+
+}
+
+#container {
+    background-color: rgba(204, 202, 243, 0.9);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px; /* A more standard width for forms */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+input, textarea, select {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+textarea {
+    resize: vertical; /* Allow resizing vertically */
+}
+
+button {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004085;
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Workshop Event Registration</h2>
+        <form id="event-registration-form" action="/event/workshop" method="POST">
+            <label for="event-name">Technology for Workshop</label>
+            <input name="eventname" type="text" id="event-name" placeholder="Enter the Technology" required>
+
+            <label for="event-description">Event Description</label>
+            <textarea name="eventdescription" id="event-description" placeholder="Enter event description" required></textarea>
+
+            <label for="event-instructions">Event Instructions</label>
+            <textarea name="eventinstructions" id="event-instructions" placeholder="Enter event instructions" required></textarea>
+
+            <label for="guest-names">Expert Name:</label>
+            <input name="guestnames" type="text" id="guest-names" placeholder="Enter the guest names" required>          
+
+            <label for="event-date">Date of Event</label>
+            <input name="eventdate" type="date" id="event-date" required>
+
+            <label for="event-location">Event Location</label>
+            <input name="eventlocation" type="text" id="event-location" placeholder="Enter event location" required>
+
+            <label for="event-time">Event Time</label>
+            <input name="eventtime" type="time" id="event-time" required>
+
+            <label for="applicable-for">Applicable For</label>
+            <select name="applicablefor" id="applicable-for" required>
+                <option value="">Select Applicable Class</option>
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
+                <option value="BTech">BTech</option>
+                <option value="All">All</option>
+            </select>
+
+            <button type="submit">Register Event</button>
+        </form>
+    </div>
+
+</body>
+</html>

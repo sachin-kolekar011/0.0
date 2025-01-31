@@ -1,0 +1,193 @@
+<% layout("layout/boilerplate") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management</title>
+    
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* background: linear-gradient(120deg, #048BA8, #034efc); */
+    background-color: beige;
+    color: #fff;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    /* background: linear-gradient(135deg, #FFC857, #ff5733); */
+    background-color:rgb(12, 12, 40);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 30px;
+}
+
+.event {
+    background-color: bisque;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 420px;
+    color: black;
+    border: none;
+    font-weight: bold;
+}
+
+.event:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+button {
+    background: linear-gradient(135deg, #6A11CB, #2575FC);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #2575FC, #6A11CB);
+    transform: scale(1.08);
+}
+
+.event-details {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #E3FDFD, #FFE6FA);
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+img{
+    object-fit: cover;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interactive Events</h1>
+    </header>
+    
+    <div class="event-container">
+        <!-- Cultural Fest Event -->
+<div class="event" id="cultural-fest">
+    <a href="event/cultural/show" style="text-decoration: none;">
+    <h2>Cultural Fest</h2>
+    <img src="https://www.tourmyindia.com/blog//wp-content/uploads/2014/12/khajuraho-dance-festival-1.jpg" 
+         alt="Cultural Fest" 
+         style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+    <p>Join us for an exciting cultural extravaganza!</p>
+</a>
+    <button class="register-btn" onclick="displayformculture()" >Add Event</button>
+
+</div>
+
+
+        <!-- Sports Event -->
+       
+<div class="event" id="sports-event">
+    <a href="event/sport/show" style="text-decoration: none;">
+    <h2>Sports Event</h2>
+    <img src="https://www.eventbrite.com/blog/wp-content/uploads/2022/09/jannes-glas-0NaQQsLWLkA-unsplash-768x443.jpg" 
+         alt="Sports Event" 
+         style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+    <p>Compete in a variety of sports and show your skills!</p>
+</a>
+    <button class="register-btn" onclick="displayformsports()">Add Event</button>
+
+</div>
+
+
+        <!-- Academic Seminar -->
+        <div class="event" id="academic-seminar" >
+            <a href="event/seminar/show" style="text-decoration: none;">
+            <h2>Academic Seminar</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWiEXx1C9x4XiqiF96upi24LrUE7NFP2gHPg&s" alt=""
+            style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom:10px ;">
+            <p>Gain insights from experts in various fields.</p>
+        </a>
+            <button class="register-btn" onclick="displayformseminarlogin()">Add Event</button>
+        
+        </div>
+
+        <!-- Technical Workshops -->
+        <div class="event" id="technical-workshops">
+            <a href="event/workshop/show" style="text-decoration: none;">
+            <h2>Technical Workshops</h2>
+            <img src="https://www.shutterstock.com/image-photo/business-conference-presentation-visionary-startup-600nw-2102457274.jpg" alt=""
+            style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom:10px ;">
+            
+           
+         <p>Attend Workshops to get hands-on experience!</p>
+        </a>
+            <button class="register-btn" onclick="displayformworkshop()">Add Event</button>
+      
+     </div>
+    </div>
+    
+    
+</body>
+<script>
+    document.getElementById('eventForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    let eventName = document.getElementById('eventName').value;
+    let eventDate = document.getElementById('eventDate').value;
+    let eventLocation = document.getElementById('eventLocation').value;
+    
+    if (eventName && eventDate && eventLocation) {
+        let eventList = document.getElementById('eventList');
+        let listItem = document.createElement('li');
+        listItem.textContent = `${eventName} - ${eventDate} at ${eventLocation}`;
+        eventList.appendChild(listItem);
+        
+        document.getElementById('eventForm').reset();
+    }
+});
+
+function displayformsports(){
+    window.location.href="/event/sport"
+}
+function displayformculture(){
+    window.location.href="/event/cultural"
+}
+function displayformseminarlogin(){
+    window.location.href="/event/seminar"
+}
+function displayformworkshop(){
+    window.location.href="/event/workshop"
+}
+
+</script>
+</html>

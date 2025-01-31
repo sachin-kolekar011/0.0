@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E3F2FD;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://www.shutterstock.com/image-photo/energetic-audience-outdoor-live-concert-600nw-2454781497.jpg');
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the background image */
+    background-attachment: fixed;
+    
+}
+
+#container {
+    background-color: rgba(223, 141, 141, 0.9);
+    margin-top: 250px;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 500px; /* Reduced width */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 1.5rem; /* Smaller font size */
+    color: #333333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Reduced gap */
+}
+
+label {
+    font-size: 0.9rem; /* Smaller font size */
+    color: black;
+    margin-bottom: 4px; /* Reduced margin */
+}
+
+input, select {
+    padding: 8px; /* Reduced padding */
+    font-size: 0.9rem; /* Smaller font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    padding: 8px; /* Reduced padding */
+    font-size: 0.9rem; /* Smaller font size */
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 8px; /* Reduced margin */
+}
+
+button:hover {
+    background-color: red;
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Event Registration</h2>
+        <form id="event-registration-form" action="/event/cultural" method="POST">
+            <label for="event-name">Event Name</label>
+            <input name="eventName" type="text" id="event-name" placeholder="Enter the event name" required>
+
+            <label for="event-description">Event Description</label><br>
+            <textarea name="eventDescription" id="event-description" placeholder="Enter event description" required></textarea>
+
+            <label for="event-instructions">Event Instructions</label><br>
+            <textarea name="eventInstructions" id="event-instructions" placeholder="Enter event instructions" required></textarea>
+
+            <label for="event-date">Date of Event</label>
+            <input type="date" name="eventDate" id="event-date" required>
+
+            <label for="event-location">Event Location</label>
+            <input type="text" name="eventLocation" id="event-location" placeholder="Enter event location" required>
+
+            <label for="event-time">Event Time</label>
+            <input type="time" name="eventTime" id="event-time" required>
+
+            <label for="applicable-for">Applicable For</label>
+            <select name="applicableFor" id="applicable-for" required>
+                <option value="">Select Applicable Class</option>
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
+                <option value="BTech">BTech</option>
+            </select>
+
+            <button type="submit">Register Event</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

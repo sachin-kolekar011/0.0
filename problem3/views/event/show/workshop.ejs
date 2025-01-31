@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Event Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .event-details {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 20%;
+            margin-right: 20%;
+
+        }
+
+        .event-details h2 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        .event-details p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .event-details p strong {
+            color: #333;
+        }
+
+        .event-details form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .event-details button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .event-details button:hover {
+            background-color: #45a049;
+        }
+
+        hr {
+            border: 1px solid #f0f0f0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .event-details {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .event-details h2 {
+                font-size: 20px;
+            }
+
+            .event-details button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Workshop Event Details</h1>
+    <% for(let workshop of workshopdata) { %>
+        <div class="event-details">
+            <h2>Event Name: <%= workshop.eventName %></h2>
+            <p><strong>Description:</strong> <%= workshop.eventDescription %></p>
+            <p><strong>Instructions:</strong> <%= workshop.eventInstructions %></p>
+            <p><strong>Guest Names:</strong> <%= workshop.guestNames %></p>
+            <p><strong>Event Date:</strong> <%= workshop.eventDate.toISOString().split('T')[0] %></p>
+            <p><strong>Event Time:</strong> <%= workshop.eventTime %></p>
+            <p><strong>Location:</strong> <%= workshop.eventLocation %></p>
+            <p><strong>Applicable For:</strong> <%= workshop.applicableFor %></p>
+            <p><strong>Post By:</strong> <%= workshop.owner.username %></p>
+            <p><strong>Created At:</strong> <%= workshop.createdAt.toISOString() %></p>
+            <p><strong>Updated At:</strong> <%= workshop.updatedAt.toISOString() %></p>
+            <form action="/event/workshop/apply">
+                <button>Apply</button>
+            </form>
+            
+             
+        </div>
+        <hr>
+    <% } %>
+</body>
+</html>
